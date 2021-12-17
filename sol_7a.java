@@ -27,7 +27,7 @@ class sol_7a {
             smaller += (i - val[j]); cur+= val[j];
         }
         smaller += (sum-cur) - (i*(val.length-k));
-        min = smaller;
+        min = Math.min(min,smaller);
     }
     System.out.println(min);
 }
