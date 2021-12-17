@@ -16,17 +16,18 @@ class sol_7a {
         sum += val[i]; set.add(val[i]);
     }
     Arrays.sort(val);
-    HashMap<Integer, Integer> map = new HashMap<>();
-    for(int i=0; i<val.length;i++)
-        if(map.get(val[i])==null) map.put(val[i], i);
+    HashMap<Integer, Integer> map = new HashMap<>(); int pref=0;
+    HashMap<Integer, Integer> map1 = new HashMap<>(); 
 
+    for(int i=0; i<val.length;i++) {
+        if(map.get(val[i])==null) { map.put(val[i], i); map1.put(val[i], pref);}
+        pref+=val[i];
+    }
     int min= Integer.MAX_VALUE;
     for(Integer i: set) {
         int smaller=0; int k=map.get(i); int cur=0;
-        for(int j=0; j<k;j++) {
-            smaller += (i - val[j]); cur+= val[j];
-        }
-        smaller += (sum-cur) - (i*(val.length-k));
+        smaller += (i*k) - map1.get(i);
+        smaller += (sum-map1.get(i)) - (i*(val.length-k));
         min = Math.min(min,smaller);
     }
     System.out.println(min);
