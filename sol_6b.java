@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class sol_6a {
+public class sol_6b {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String s[] =  sc.nextLine().split(",");
