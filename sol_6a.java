@@ -1,36 +1,29 @@
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class sol_6a {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> q = new ArrayList<>();
         String s[] =  sc.nextLine().split(",");
-        
-        System.out.println(s.length);
-        
-        for(int i=0;i<300;i++) {
-            q.add(Integer.parseInt(s[i]));
-        }
-      
-        int add=0; ArrayList<Integer> m = new ArrayList<>();
 
-        for(int j=0;j<80;j++) {
-            m.clear(); 
-            for(int i=0;i<q.size();i++) {
-                if(q.get(i)==0) {
-                    m.add(6); add++; 
-                } else {
-                    m.add(q.get(i)-1); 
-                   
-                }
-            }
-            for(int r=0; r<add; r++){
-                m.add(8);
-            }
-            q.clear(); q.addAll(m);add=0;    
+        long arr[] = new long[9];
+        for(int i=0;i< s.length;i++) {
+            arr[Integer.parseInt(s[i])]++;
         }
-        System.out.println("size " + q.size());
-    }   
+        long add=0; 
+
+        for(int j=0;j < 80;j++) {   
+            for(int i= 0; i<8;i++) {
+                if(i==0) add=arr[0]; 
+                arr[i]=arr[i+1];
+           
+            }
+            arr[6]+=add; 
+            arr[8]=add; add=0;
+        }        
+
+        long l=0;
+        for(int i=0; i<9;i++) l+=arr[i];
+
+        System.out.println(" ansd " + l);
+    }
 }
